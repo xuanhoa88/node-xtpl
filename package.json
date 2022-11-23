@@ -1,5 +1,5 @@
 {
-  "name": "xtpl",
+  "name": "node-xtpl",
   "version": "0.0.1",
   "description": "A node module to generate .xlsx files from a .xlsx template.",
   "main": "dist/xtpl.js",
