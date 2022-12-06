@@ -33,7 +33,7 @@ class SheetResource {
       });
     });
 
-    sheetModel.columns = Column.fromModel(sheetModel, sheetModel.cols);
+    sheetModel.columns = Column.fromModel(sheetModel, sheetModel.cols) || [];
 
     const root = new Root(sheetModel.sheetNo, nodeMap);
     for (let r = 1; r <= maxRow; r++) {

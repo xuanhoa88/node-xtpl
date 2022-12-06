@@ -21,8 +21,8 @@ class Book extends Workbook {
     this.views = bookModel.views;
     this.themes = bookModel.themes;
     this.defaultFont = bookModel.defaultFont;
-    this.creator = "xtpl";
     this.media = [];
+    this.creator = "xtpl";
     this.imageMap = new Map();
   }
 
@@ -78,8 +78,16 @@ class BookWriter extends Xlsx {
     return "XLSheet";
   }
 
-  renderSheet(data, sheetName) {
+  createWorkbook() {
+    if (this.workbook && this.workbook.creator === "xtpl") {
+      return;
+    }
     this.workbook = new Book(this.bookModel);
+  }
+
+  renderSheet(data, sheetName) {
+    this.createWorkbook();
+
     const sheetResource = this.sheetResourceMap.getSheetResource(sheetName);
     sheetResource.renderSheet(
       this.sheetWriterMap.getSheetWriter(

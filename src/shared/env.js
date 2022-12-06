@@ -37,13 +37,11 @@ class Env {
     this.offset = offset;
   }
 
-  compile(src) {
+  compile(tmplStr) {
     try {
-      const templator = nunjucks.compile(src, this.env, createChecksumId(src));
-      templator.compile();
-      return templator;
+      return nunjucks.compile(tmplStr, this.env, createChecksumId(tmplStr));
     } catch (e) {
-      this.log(src, e);
+      this.log(tmplStr, e);
       throw e;
     }
   }
